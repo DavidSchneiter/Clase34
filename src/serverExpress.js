@@ -27,7 +27,6 @@ const passport = require("passport");
 const localStrategy = require("passport-local").Strategy;
 const User = require("./models/User.js");
 const { default: mongoose } = require("mongoose");
-const { response } = require("express");
 mongoose.set("strictQuery", true);
 const advancedOptions = {
   useNewUrlParser: true,
@@ -36,7 +35,7 @@ const advancedOptions = {
 
 const app = express();
 
-PORT = args.port || 8080;
+PORT = process.env.PORT || 8080;
 
 app.use(
   session({
