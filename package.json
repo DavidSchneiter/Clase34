@@ -5,8 +5,8 @@
   "main": "serverExpress.js",
   "scripts": {
     "test": "node ./debug/benchmark.js",
-    "start": "0x -o serverExpress.js",
-    "dev": "nodemon ./src/serverExpress.js"
+    "testWith0x": "0x -o serverExpress.js",
+    "start": "node ./src/serverExpress.js"
   },
   "keywords": [],
   "author": "",
