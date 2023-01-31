@@ -1,16 +1,11 @@
-const Contenedor = require("../clase.js");
-const express = require("express");
-const { Router } = express;
+import { Router } from "express";
+import { productController } from "../controllers/index.js";
 
-const container = new Contenedor("productos");
+export const productsApi = Router();
 
-const routerApi = Router();
+productsApi.get("/", productController.getProducts);
 
-routerApi.get("/", async (err, req, res) => {
-  res.status(200).json(await container.getAll());
-});
-
-// routerApi.get("/:id", async (req, res) => {
+// productsApi.get("/:id", async (req, res) => {
 //   const product = await container.getById(req.params.id);
 //   if (product.length === 0) {
 //     return res.status(404).json({ error: "producto no encontrado" });
@@ -18,18 +13,9 @@ routerApi.get("/", async (err, req, res) => {
 //   res.status(200).json(await container.getById(req.params.id));
 // });
 
-routerApi.post("/", async (req, res) => {
-  const { title, price, thumbnail, id } = req.body;
-  const product = {
-    title,
-    price,
-    thumbnail,
-    id,
-  };
-  res.status(200).json(await container.save(product));
-});
+productsApi.post("/", productController.addProducts);
 
-// routerApi.put("/:id", async (req, res) => {
+// productsApi.put("/:id", async (req, res) => {
 //   let resp = await container.getById(req.params.id);
 //   let product = resp[0];
 
@@ -50,7 +36,7 @@ routerApi.post("/", async (req, res) => {
 //   res.status(200).json(await container.save(product));
 // });
 
-// routerApi.delete("/:id", async (req, res) => {
+// productsApi.delete("/:id", async (req, res) => {
 //   const product = await container.getById(req.params.id);
 //   if (product.length === 0 || !product) {
 //     return res.status(404).json({ error: "producto no encontrado" });
@@ -58,5 +44,3 @@ routerApi.post("/", async (req, res) => {
 //   const resp = await container.deleteById(req.params.id);
 //   res.status(200).json(resp);
 // });
-
-module.exports = { routerApi };

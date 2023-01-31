@@ -1,6 +1,5 @@
-const random = require("./rng");
+import { random } from "./rng.js";
+let objetoRng = await random(process.argv[2]);
 
-let objetoRng = random(process.argv[2]);
-
-process.send(objetoRng);
-process.exit();
+// process.send({ objetoRng });
+// process.exit();

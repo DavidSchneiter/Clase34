@@ -1,6 +1,6 @@
-const fs = require("fs");
+import * as fs from "fs";
 
-class Contenedor {
+export class Contenedor {
   constructor(file) {
     this.contain = [];
     this.id = 0;
@@ -82,5 +82,3 @@ class Contenedor {
     }
   }
 }
-
-module.exports = Contenedor;

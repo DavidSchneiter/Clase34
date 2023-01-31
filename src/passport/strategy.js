@@ -1,15 +1,18 @@
-const bcrypt = require("bcrypt");
-const User = require("../models/User");
+import { compareSync, hashSync, genSaltSync } from "bcrypt";
+// import { Strategy as localStrategy } from "passport-local";
+// import passport from "passport";
+
+import { User } from "../models/index.js";
 
 const validatePassword = (user, password) => {
-  return bcrypt.compareSync(password, user.password);
+  return compareSync(password, user.password);
 };
 
 let createHash = (password) => {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+  return hashSync(password, genSaltSync(10), null);
 };
 
-const login = (req, username, password, cb) => {
+export const login = (req, username, password, cb) => {
   User.findOne({ username: username }, (err, user) => {
     if (err) return cb(err);
     if (!user) {
@@ -24,7 +27,7 @@ const login = (req, username, password, cb) => {
   });
 };
 
-const register = (req, username, password, cb) => {
+export const register = (req, username, password, cb) => {
   User.findOne({ username: username }, function (err, user) {
     if (err) {
       console.log("Error in SignUp: " + err);
@@ -44,6 +47,23 @@ const register = (req, username, password, cb) => {
     }
   });
 };
+
+// passport.use("login", new localStrategy({ passReqToCallback: true }, login));
+
+// passport.use(
+//   "register",
+//   new localStrategy({ passReqToCallback: true }, register)
+// );
+
+// passport.serializeUser((user, done) => {
+//   done(null, user._id);
+// });
+
+// passport.deserializeUser((id, done) => {
+//   User.findById(id, function (err, user) {
+//     done(err, user);
+//   });
+// });
 
 // const register = (req, username, password, cb) => {
 //   const findOrCreateuser = () => {
@@ -73,5 +93,3 @@ const register = (req, username, password, cb) => {
 //   };
 //   process.nextTick(findOrCreateuser);
 // };
-
-module.exports = { login, register };

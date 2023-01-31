@@ -1,54 +1,34 @@
-const Contenedor = require("../clase.js");
-const express = require("express");
-const passport = require("passport");
-const Authenticated = require("../middlewares/middleware.js");
-const { Router } = express;
+import { Router } from "express";
+import passport from "passport";
 
-const container = new Contenedor("productos");
+import { Authenticated } from "../middlewares/index.js";
+import { viewsController } from "../controllers/index.js";
 
-const viewsApi = Router();
+export const viewsApi = Router();
 
 viewsApi.post(
   "/login",
   passport.authenticate("login", { failureRedirect: "/faillogin" }),
-  (req, res) => {
-    res.redirect("/");
-  }
+  viewsController.redirect
 );
 
 viewsApi.post(
   "/register",
   passport.authenticate("register", { failureRedirect: "/failregister" }),
-  (req, res) => {
-    res.redirect("/");
-  }
+  viewsController.redirect
 );
 
-viewsApi.get("/failregister", (req, res) => {
-  res.render("partials/register-error", {});
-});
-viewsApi.get("/faillogin", (req, res) => {
-  res.render("partials/login-error", {});
-});
-viewsApi.get("/register", (req, res) => {
-  res.render("register");
-});
-viewsApi.get("/logout", (req, res) => {
-  const { username } = req.user;
-  req.logout(req.user, (err) => {
-    if (err) return err;
-    res.redirect("/");
-  });
-  res.render("logout", { username });
-});
+viewsApi.get("/failregister", viewsController.failRegister);
 
-viewsApi.get("/login", Authenticated, (req, res) => {
-  res.render("login");
-});
+viewsApi.get("/faillogin", viewsController.failLogin);
 
-viewsApi.get("/", Authenticated, (req, res) => {
-  res.redirect("/login");
-});
+viewsApi.get("/register", viewsController.renderRegister);
+
+viewsApi.get("/logout", viewsController.logout);
+
+viewsApi.get("/login", Authenticated, viewsController.renderLogin);
+
+viewsApi.get("/", Authenticated, viewsController.redirectLogin);
 
 // viewsApi.get("/", (req, res) => {
 //   if (req.session.count) {
@@ -78,17 +58,6 @@ viewsApi.get("/", Authenticated, (req, res) => {
 //   res.redirect("/");
 // });
 
-viewsApi.post("/productos", async (req, res) => {
-  const { title, price, thumbnail } = req.body;
+viewsApi.post("/productos", viewsController.redirectProducts);
 
-  await container.save({ title, price, thumbnail });
-
-  res.redirect("/");
-});
-
-viewsApi.get("/productos", async (req, res) => {
-  const productos = await container.getAll();
-  res.render("table", { products: productos });
-});
-
-module.exports = { viewsApi };
+viewsApi.get("/productos", viewsController.renderProducts);

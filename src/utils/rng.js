@@ -1,4 +1,4 @@
-function random(cant) {
+export function random(cant) {
   let numeros = [];
   for (let i = 0; i < cant; i++) {
     numeros.push(Math.floor(Math.random() * 1000 + 1));
@@ -18,5 +18,3 @@ function random(cant) {
   });
   return listado;
 }
-
-module.exports = random;
