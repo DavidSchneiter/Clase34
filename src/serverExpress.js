@@ -68,8 +68,10 @@ if (args.modo == "CLUSTER" && cluster.isPrimary) {
     cluster.fork();
   }
 } else {
-  const server = app.listen(args.port, async () => {
-    logger.info(`Servidor de exprees ejecutandose en el puerto ${args.port}`);
+  const server = app.listen(process.env.PORT, async () => {
+    logger.info(
+      `Servidor de exprees ejecutandose en el puerto ${process.env.PORT}`
+    );
     dbConnection();
   });
 
