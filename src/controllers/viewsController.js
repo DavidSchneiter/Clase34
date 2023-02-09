@@ -1,7 +1,6 @@
 import { Router } from "express";
-
-import { Contenedor } from "../Containers/index.js";
-const container = new Contenedor("productos");
+import ContainerRepository from "../Daos/Repository.js";
+const productsContainer = new ContainerRepository();
 
 export const viewsApi = Router();
 
@@ -39,12 +38,12 @@ export const redirectLogin = (req, res) => {
 export const redirectProducts = async (req, res) => {
   const { title, price, thumbnail } = req.body;
 
-  await container.save({ title, price, thumbnail });
+  await productsContainer.add({ title, price, thumbnail });
 
   res.redirect("/");
 };
 
 export const renderProducts = async (req, res) => {
-  const productos = await container.getAll();
+  const productos = await productsContainer.getAll();
   res.render("table", { products: productos });
 };

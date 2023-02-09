@@ -1,8 +1,8 @@
-import { Contenedor } from "../Containers/index.js";
-const container = new Contenedor("productos");
+import ContainerRepository from "../Daos/Repository.js";
+const productsContainer = new ContainerRepository();
 
 export const getProducts = async (req, res) => {
-  res.status(200).json(await container.getAll());
+  res.status(200).json(await productsContainer.getAll());
 };
 
 export const addProducts = async (req, res) => {
@@ -13,5 +13,5 @@ export const addProducts = async (req, res) => {
     thumbnail,
     id,
   };
-  res.status(200).json(await container.save(product));
+  res.status(200).json(await productsContainer.add(product));
 };
