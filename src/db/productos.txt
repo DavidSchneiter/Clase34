@@ -1,8 +1,8 @@
 [
   {
-    "title": "david123",
-    "price": "123",
-    "thumbnail": "https://www.youtube.com/watch?v=8H3X1hhJCy0",
+    "title": "tostadora",
+    "price": "6800",
+    "thumbnail": "https://www.google.com/tostadora.jpg",
     "id": 1
   }
 ]

@@ -16,7 +16,7 @@ import { args, logger } from "./utils/index.js";
 import { strategy } from "./passport/index.js";
 import { User } from "./models/User.js";
 
-const app = express();
+export const app = express();
 
 app.use(session(mongoSession));
 app.use(cookieParser());
