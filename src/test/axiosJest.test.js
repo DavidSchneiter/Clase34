@@ -1,5 +1,6 @@
-import axios from "axios";
-import { strictEqual, deepStrictEqual } from "assert";
+const axios = require("axios");
+const strictEqual = require("assert").strictEqual;
+const deepStrictEqual = require("assert").deepStrictEqual;
 
 const enviar = (productos) =>
   axios.post("http://localhost:8080/api/productos", productos);
@@ -7,12 +8,12 @@ const enviar = (productos) =>
 const recibir = () => axios.get("http://localhost:8080/api/productos");
 
 describe("api productos en memoria", () => {
-  it("recibir productos vacio", async () => {
+  test("recibir productos vacio", async () => {
     const { data } = await recibir();
     deepStrictEqual(data, []);
   });
 
-  it("enviar productos", async () => {
+  test("enviar productos", async () => {
     const produ = {
       title: "tostadora",
       price: "6800",
