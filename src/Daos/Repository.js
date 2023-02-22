@@ -12,19 +12,31 @@ export default class ContainerRepository {
     return contain;
   }
 
-  async getById(idBuscado) {
+  getById = async (idBuscado) => {
     const objObtenido = await this.#dao.getById(idBuscado);
     return objObtenido;
-  }
+  };
+  // async getById(idBuscado) {
+  //   const objObtenido = await this.#dao.getById(idBuscado);
+  //   return objObtenido;
+  // }
 
-  async add(contenidoNuevo) {
-    await this.#dao.save(contenidoNuevo);
-  }
+  add = async ({ producto }) => {
+    // console.log(producto);
+    return await this.#dao.save(producto);
+  };
 
-  async removeById(idBuscado) {
+  // async add({contenidoNuevo}) {
+  //   await this.#dao.save(contenidoNuevo);
+  // }
+  removeById = async (idBuscado) => {
     const removida = await this.#dao.deleteById(idBuscado);
     return removida;
-  }
+  };
+  // async removeById(idBuscado) {
+  //   const removida = await this.#dao.deleteById(idBuscado);
+  //   return removida;
+  // }
 
   async removeAll() {
     await this.#dao.deleteAll();

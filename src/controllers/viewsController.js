@@ -37,8 +37,9 @@ export const redirectLogin = (req, res) => {
 
 export const redirectProducts = async (req, res) => {
   const { title, price, thumbnail } = req.body;
-
-  await productsContainer.add({ title, price, thumbnail });
+  const producto = { title, price, thumbnail };
+  console.log({ producto });
+  await productsContainer.add({ producto });
 
   res.redirect("/");
 };

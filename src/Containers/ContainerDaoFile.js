@@ -57,7 +57,8 @@ export class ContainerDaoFile {
     });
     try {
       await this.#escribirArchivo();
-      return `Id asignado al producto ${obj.title}: ${obj.id}`;
+      return obj;
+      // return `Id asignado al producto ${obj.title}: ${obj.id}`;
     } catch (error) {
       throw new Error("Imposible guardar", error);
     }
@@ -100,6 +101,17 @@ export class ContainerDaoFile {
       this.contain = newData;
       this.#escribirArchivo();
       return newData;
+    } catch (error) {
+      throw new Error("Imposible leer archivo", error);
+    }
+  }
+
+  async deleteAll() {
+    try {
+      await this.#leerArchivo();
+      this.contain = [];
+      this.#escribirArchivo();
+      return this.contain;
     } catch (error) {
       throw new Error("Imposible leer archivo", error);
     }

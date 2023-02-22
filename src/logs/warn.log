@@ -57,3 +57,8 @@
 {"level":"warn","message":"Page not found, Url:  /favicon.ico, metodo: GET"}
 {"level":"error","message":"Erorr en el servidor Error: listen EADDRINUSE: address already in use :::8080"}
 {"level":"error","message":"Erorr en el servidor Error: listen EADDRINUSE: address already in use :::8080"}
+{"level":"warn","message":"Page not found, Url:  /favicon.ico, metodo: GET"}
+{"level":"warn","message":"Page not found, Url:  /www.asd, metodo: GET"}
+{"level":"warn","message":"Page not found, Url:  /sdasd, metodo: GET"}
+{"level":"warn","message":"Page not found, Url:  /www.asd, metodo: GET"}
+{"level":"warn","message":"Page not found, Url:  /sdasd, metodo: GET"}

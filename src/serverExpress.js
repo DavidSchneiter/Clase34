@@ -15,6 +15,7 @@ import { dbConnection } from "./db/configMongo.js";
 import { args, logger } from "./utils/index.js";
 import { strategy } from "./passport/index.js";
 import { User } from "./models/User.js";
+import { GraphQLController } from "./controllers/index.js";
 
 export const app = express();
 
@@ -60,6 +61,7 @@ app.use("/", viewsApi);
 app.use("/api/productos", productsApi);
 app.use("/api/random", randomApi);
 app.use("/info", infoApi);
+app.use("/graphql", new GraphQLController());
 app.use(notFoundMiddleware);
 
 if (args.modo == "CLUSTER" && cluster.isPrimary) {

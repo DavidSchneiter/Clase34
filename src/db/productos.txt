@@ -1,8 +1,1 @@
-[
-  {
-    "title": "tostadora",
-    "price": "6800",
-    "thumbnail": "https://www.google.com/tostadora.jpg",
-    "id": 1
-  }
-]
+[]

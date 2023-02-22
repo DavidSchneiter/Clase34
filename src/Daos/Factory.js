@@ -16,8 +16,6 @@ switch (opcion) {
   case "File":
     dao = getProductosSingletonFile();
     await dao.init();
-    console.log(ContainerDaoFile.getInstancia());
-    console.log(ContainerDaoMem.getInstancia());
     break;
   default:
     dao = getProductosSingletonMem();
