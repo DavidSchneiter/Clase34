@@ -7,13 +7,20 @@ export default class ContainerRepository {
     this.#dao = ContainerDaoFactory.getDao();
   }
 
-  async getAll() {
+  getAll = async () => {
     const contain = await this.#dao.getAll();
     return contain;
-  }
+  };
 
-  getById = async (idBuscado) => {
-    const objObtenido = await this.#dao.getById(idBuscado);
+  // async getAll() {
+  //   const contain = await this.#dao.getAll();
+  //   return contain;
+  // }
+
+  getById = async ({ id }) => {
+    console.log(id);
+    const objObtenido = await this.#dao.getById(id);
+    console.log({ objObtenido });
     return objObtenido;
   };
   // async getById(idBuscado) {
@@ -22,15 +29,15 @@ export default class ContainerRepository {
   // }
 
   add = async ({ producto }) => {
-    // console.log(producto);
     return await this.#dao.save(producto);
   };
 
-  // async add({contenidoNuevo}) {
-  //   await this.#dao.save(contenidoNuevo);
+  // async add( producto ) {
+  //   return await this.#dao.save(producto);
   // }
-  removeById = async (idBuscado) => {
-    const removida = await this.#dao.deleteById(idBuscado);
+
+  removeById = async ({ id }) => {
+    const removida = await this.#dao.deleteById(id);
     return removida;
   };
   // async removeById(idBuscado) {
@@ -38,7 +45,11 @@ export default class ContainerRepository {
   //   return removida;
   // }
 
-  async removeAll() {
+  removeAll = async () => {
     await this.#dao.deleteAll();
-  }
+  };
+
+  // async removeAll() {
+  //   await this.#dao.deleteAll();
+  // }
 }

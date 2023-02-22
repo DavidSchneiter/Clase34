@@ -66,7 +66,7 @@ export class ContainerDaoFile {
   async getById(id) {
     try {
       await this.#leerArchivo();
-      return this.contain.filter((e) => {
+      return this.contain.find((e) => {
         return e.id == parseInt(id);
       });
     } catch (error) {

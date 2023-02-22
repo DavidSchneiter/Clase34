@@ -20,7 +20,7 @@ const schema = buildSchema(`
     }
     type Mutation {
         addProducto(producto: ProductoInput): Producto,
-        deleteProducto(id: ID!): Producto,
+        deleteProducto(id: ID!): [Producto],
         deleteProductos:[Producto],
     }
 `);
@@ -32,10 +32,10 @@ export class GraphQLController {
       schema: schema,
       rootValue: {
         getProducto: api.getById,
-        getProductos: api.getAll(),
+        getProductos: api.getAll,
         addProducto: api.add,
         deleteProducto: api.removeById,
-        deleteProductos: api.removeAll(),
+        deleteProductos: api.removeAll,
       },
       graphiql: true,
     });
