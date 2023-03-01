@@ -20,7 +20,7 @@ switch (opcion) {
   default:
     dao = getProductosSingletonMem();
 }
-
+ 
 export default class ContainerDaoFactory {
   static getDao() {
     return dao;
